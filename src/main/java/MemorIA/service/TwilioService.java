@@ -23,6 +23,11 @@ public class TwilioService {
 
     @PostConstruct
     public void init() {
+        if (accountSid == null || accountSid.isBlank()
+                || authToken == null || authToken.isBlank()) {
+            System.out.println("[TwilioService] Twilio credentials not set — SMS/Voice disabled");
+            return;
+        }
         Twilio.init(accountSid, authToken);
     }
 
